@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../enumerable.rb'
 
 RSpec.describe Enumerable do
@@ -16,7 +18,7 @@ RSpec.describe Enumerable do
   describe '#my_each_with_index' do
     result = []
     it 'returns it self' do
-      expect(arr.my_each_with_index { |i, index| result << index }).to eql([1, 2, 3, 4])
+      expect(arr.my_each_with_index { |_i, index| result << index }).to eql([1, 2, 3, 4])
     end
 
     it 'iterates through each element with index in an array' do
@@ -26,7 +28,7 @@ RSpec.describe Enumerable do
 
   describe '#my_select' do
     it 'should return a new array of even numbers' do
-      expect(arr.my_select { |i| i.even? }).to eql([2, 4])
+      expect(arr.my_select { |i| i < 3 }).to eql([1, 2])
     end
   end
 
