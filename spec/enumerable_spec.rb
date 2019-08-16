@@ -38,13 +38,13 @@ RSpec.describe Enumerable do
     end
 
     it 'should return false if one or more elements fail the condition in the block given' do
-      expect(arr.my_all? { |i| i.even? }).to eql(false)
+      expect(arr.my_all?(&:even?)).to eql(false)
     end
   end
 
   describe '#my_any?' do
     it 'should return true if any element passes the condition in the block given' do
-      expect(arr.my_any? { |i| i.odd? }).to eql(true)
+      expect(arr.my_any?(&:odd?)).to eql(true)
     end
 
     it 'should return false if no element passes the condition in the block given' do
@@ -54,7 +54,7 @@ RSpec.describe Enumerable do
 
   describe '#my_none?' do
     it 'should return false if any element passes the condition in the block given' do
-      expect(arr.my_none? { |i| i.odd? }).to eql(false)
+      expect(arr.my_none?(&:odd?)).to eql(false)
     end
 
     it 'should return true if no element passes the condition in the block given' do
@@ -72,12 +72,12 @@ RSpec.describe Enumerable do
     end
 
     it 'should take a block' do
-      expect(arr.my_count { |i| i.even? }).to eql(2)
+      expect(arr.my_count(&:even?)).to eql(2)
     end
   end
 
   describe '#my_map' do
-    my_proc = Proc.new { |i| i + 1 }
+    my_proc = proc { |i| i + 1 }
     it 'should take a proc' do
       expect(arr.my_map(&my_proc)).to eql([2, 3, 4, 5])
     end
